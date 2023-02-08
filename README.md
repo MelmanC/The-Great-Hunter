@@ -8,15 +8,9 @@ The Great Hunter is a local multiplayer game made with the Pyxel library. You pl
 
 ## Authors
 
-<<<<<<< HEAD
-- 👤 [@Melman](https://github.com/MelmanC)
-- 👤 [@Lofie](https://github.com/LoFieee)
-- 👤 [@Sweizeur](https://github.com/sweizeur)
-=======
 - 👤 [@Sweizeur](https://github.com/sweizeur) (Multiplayer made by him)
 - 👤 [@Melman](https://github.com/MelmanC)
 - 👤 [@Lofie](https://github.com/LoFieee)
->>>>>>> 56ff1974fac7bddc3160210494eb08279450b2d5
 
 
 
