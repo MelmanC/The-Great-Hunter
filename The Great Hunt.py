@@ -201,7 +201,7 @@ class Jeu:
             self.texte = "Tapez le code de connexion du chercheur\n"
             self.imclient = True
         #deplacement avec les touches de direction
-        if self.fin == False:
+        if (self.serveur == False or self.client == False) and self.fin == False:
             try:
                 if pyxel.btn(pyxel.KEY_LEFT):
                     for word in self.block_sans_collision:
@@ -253,7 +253,7 @@ class Jeu:
             self.Joueur2.draw()
         except:
             pass
-    
+        self.rectangle.draw()
         pyxel.text(128*2-90, 128*2, self.texte, 0)
         #afficher le timer en haut à gauche
         pyxel.text(10, 10, str(self.timer), 7)
