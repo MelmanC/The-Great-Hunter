@@ -79,31 +79,30 @@ class Jeu:
             self.texte = "La personne qui se cache a gagne ! \n\nPour rejouer, appuyez sur la touche 'R'"
             self.rectangle = Rectangle(0,0,pyxel.height,pyxel.width,6)
             self.fin = True
-        if pyxel.frame_count % 5 == 0:
-            if self.client != False:
-                try:
-                    #je recupère les donnees du serveur
-                    self.client.player2 = self.client.player2.split(",")
-                    #je definis les coordonnees du joueur 2
-                    y = int(float(self.client.player2[1]))
-                    x = int(float(self.client.player2[0]))
-                    self.Joueur2 = Joueur1(32,32)
-                    self.Joueur2.y = y
-                    self.Joueur2.x = x
-                except:
-                    pass
-            if self.serveur != False:
-                try:
-                    #je recupère les donnees du client
-                    self.serveur.player2 = self.serveur.player2.split(",")
-                    #je definis les coordonnees du joueur 2
-                    y = int(float(self.serveur.player2[1]))
-                    x = int(float(self.serveur.player2[0]))
-                    self.Joueur2 = Joueur2(384,320)
-                    self.Joueur2.y = y
-                    self.Joueur2.x = x
-                except:
-                    pass
+        if self.client != False:
+            try:
+                #je recupère les donnees du serveur
+                self.client.player2 = self.client.player2.split(",")
+                #je definis les coordonnees du joueur 2
+                y = int(float(self.client.player2[1]))
+                x = int(float(self.client.player2[0]))
+                self.Joueur2 = Joueur1(32,32)
+                self.Joueur2.y = y
+                self.Joueur2.x = x
+            except:
+                pass
+        if self.serveur != False:
+            try:
+                #je recupère les donnees du client
+                self.serveur.player2 = self.serveur.player2.split(",")
+                #je definis les coordonnees du joueur 2
+                y = int(float(self.serveur.player2[1]))
+                x = int(float(self.serveur.player2[0]))
+                self.Joueur2 = Joueur2(384,320)
+                self.Joueur2.y = y
+                self.Joueur2.x = x
+            except:
+                pass
         if self.client != False:
             try:
                 #je recupère les donnees du serveur
@@ -150,9 +149,18 @@ class Jeu:
                 self.client = Client(self.code)
                 self.rectangle = Rectangle(0, 0, 0, 0, 0)
         # joueurs Joueur1 designe
-        if pyxel.frame_count == 1:
-            Music()
+        # if pyxel.frame_count == 1:
+        #     Music()
         if pyxel.btnp(pyxel.KEY_R) and (self.serveur != False or self.client != False) and self.fin == True:
+            #ferme la connection du client et du serveur
+            try:
+                self.serveur.connexion = False
+                self.serveur.connexion_avec_client.close()
+                self.client.connexion = False
+                self.client.client.close()
+            except:
+                pass
+            self.fin = False
             self.imclient = False
             self.timer = 90
             self.code = ""
@@ -160,6 +168,8 @@ class Jeu:
             self.serveur = False
             self.plan_x = 0
             self.plan_y = 0
+            self.Joueur1 = Joueur1(32, 32)
+            self.Joueur2 = Joueur2(384, 320)
             # charger le rectangle
             self.rectangle = Rectangle(0,0,pyxel.height,pyxel.width,6)
             self.texte = "Appuyez sur la touche 'S' pour etre un Chercheur\nLe code de connexion pour la personne qui se cache est: "+gethostbyname(gethostname())+"\n\nAppuyez sur la touche 'J' pour etre la personne qui se cache\n"
