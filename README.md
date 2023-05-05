@@ -31,8 +31,7 @@ git clone https://github.com/MelmanC/The-Great-Hunter.git
     
 ## Optimizations
 
-The code is far from being optimized, the library and the temp do not allow us to make a "clean" code
-
+The code is far from being optimized, the library and the temp did not allow us to make a "clean" code.
 
 ## License
 
